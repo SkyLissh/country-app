@@ -14,6 +14,18 @@ export const CountrySchema = z.object({
   region: z.string(),
   subregion: z.string().optional(),
   capital: z.array(z.string()).optional(),
+  tld: z.array(z.string()).optional(),
+  currencies: z
+    .record(
+      z.string(),
+      z.object({
+        name: z.string(),
+        symbol: z.string(),
+      })
+    )
+    .optional(),
+  languages: z.record(z.string(), z.string()).optional(),
+  borders: z.array(z.string()).optional(),
 });
 
 export type Country = z.infer<typeof CountrySchema>;
